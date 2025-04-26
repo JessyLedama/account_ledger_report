@@ -1,0 +1,17 @@
+<odoo>
+    <record id="action_account_ledger_report" model="ir.actions.act_window">
+        <field name="name">Account Ledger Report</field>
+        <field name="res_model">account.ledger.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_sm">Generate account ledger reports.</p>
+        </field>
+    </record>
+
+    <menuitem id="account_ledger_main_menu" name="Account Ledger" parent="account.menu_finance" sequence="10"/>
+
+    <menuitem id="account_ledger_report_menu"
+              name="Account Ledger Report"
+              parent="account_ledger_main_menu"
+              action="action_account_ledger_report"/>
+</odoo>

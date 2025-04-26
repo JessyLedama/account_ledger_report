@@ -1,0 +1,61 @@
+<odoo>
+    <report
+        id="account_ledger_report"
+        string="Account Ledger Report"
+        model="account.ledger.report"
+        report_type="qweb-pdf"
+        name="account_ledger_report.report_account_ledger"
+        file="account_ledger_report.report_account_ledger"
+        print_report_name="'Account Ledger - %s' % (object.account_id.name)"
+    />
+
+    <template id="report_account_ledger">
+        <!-- Ensure the report inherits the standard layout -->
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="docs[0]"/>
+            <main>
+                <div class="oe_structure">
+                    <h2>Account Ledger Report</h2>
+                    
+                    <h4>
+                        Account:
+                         
+                        <t t-esc="doc.account_id.name"/>
+                    </h4>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.get_ledger_data(doc.account_id.id)" t-as="entry">
+                                <tr>
+                                    <td><t t-esc="entry['date']"/></td>
+                                    <td><t t-esc="entry['description']"/></td>
+                                    <td><t t-esc="entry['debit']"/></td>
+                                    <td><t t-esc="entry['credit']"/></td>
+                                    <td><t t-esc="entry['balance']"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+
+                         <!-- Closing Balance Row -->
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" style="text-align: right; font-weight: bold;">Closing Balance:</td>
+                                <td><t t-esc="doc.get_ledger_data(doc.account_id.id)[-1]['balance']"/></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </main>
+        </t>
+    </template>
+
+</odoo>

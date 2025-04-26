@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_account_ledger_report_tree" model="ir.ui.view">
+        <field name="name">account.ledger.report.tree</field>
+        <field name="model">account.ledger.report</field>
+        <field name="arch" type="xml">
+            <tree string="Account Ledger">
+                <field name="account_id"/>
+                <field name="date"/>
+                <field name="description"/>
+                <field name="debit"/>
+                <field name="credit"/>
+                <field name="balance"/>
+
+                <header>
+                    <button name="action_export_pdf" type="object" string="Export PDF" class="oe_highlight"/>
+                </header>
+            </tree>
+        </field>
+    </record>
+</odoo>
