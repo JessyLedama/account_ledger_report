@@ -12,9 +12,18 @@ class AccountLedgerWizard(models.TransientModel):
         """
         self.ensure_one()
 
-        return self.env.ref('account_ledger_report.account_ledger_report').report_action(
-            self.env['account.ledger.report'].create({'account_id': self.account_id.id})
-        )
+        # Create a temporary record in 'account.ledger.report'
+        report_record = self.env['account.ledger.report'].create({
+            'account_id': self.account_id.id,
+        })
+
+        # return self.env.ref('account_ledger_report.account_ledger_report').report_action(
+        #     self.env['account.ledger.report'].create({'account_id': self.account_id.id})
+        # )
+
+        # Trigger the report using the report XML ID
+        return self.env.ref('account_ledger_report.account_ledger_report').report_action(report_record)
+
 
     def action_preview_account_report(self):
         self.ensure_one()
