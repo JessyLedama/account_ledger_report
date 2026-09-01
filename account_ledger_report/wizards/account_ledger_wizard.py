@@ -51,7 +51,7 @@ class AccountLedgerWizard(models.TransientModel):
             'name': 'Account Ledger',
             'view_mode': 'tree',
             'res_model': 'account.ledger.report',
-            'views': [(self.env.ref('account_ledger_report.view_account_ledger_report_tree').id, 'tree')],
+            'views': [(self.env.ref('account_ledger_report.view_account_ledger_report_list').id, 'list')],
             'domain': [('account_id', '=', self.account_id.id)],
             'target': 'current',
         }

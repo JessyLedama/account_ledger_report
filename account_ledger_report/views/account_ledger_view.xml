@@ -1,6 +1,6 @@
 <odoo>
-    <record id="view_account_ledger_report_tree" model="ir.ui.view">
-        <field name="name">account.ledger.report.tree</field>
+    <record id="view_account_ledger_report_list" model="ir.ui.view">
+        <field name="name">account.ledger.report.list</field>
         <field name="model">account.ledger.report</field>
         <field name="arch" type="xml">
             <list string="Account Ledger">
