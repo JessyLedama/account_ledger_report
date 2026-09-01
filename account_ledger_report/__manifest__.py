@@ -16,5 +16,5 @@
         'reports/account_ledger_template.xml',
     ],
     'installable': True,
-    'application': True,
+    'application': False,
 }

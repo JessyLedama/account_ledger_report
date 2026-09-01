@@ -57,29 +57,6 @@ class AccountLedgerReport(models.Model):
 
         transactions = self.env['account.move.line'].search(domain, order='date asc')
 
-        # Fetch Opening Balance
-        # opening_move_line = self.env['account.move.line'].search([
-        #     ('account_id', '=', account_id),
-        #     ('move_id.state', '=', 'posted')
-        # ], order='date asc', limit=1)
-
-        # if opening_move_line:
-        #     total_balance = opening_move_line.debit - opening_move_line.credit
-        #     ledger_entries.append({
-        #         'date': opening_move_line.date,
-        #         'description': f"Opening Balance ({opening_move_line.move_id.name})",
-        #         'debit': opening_move_line.debit,
-        #         'credit': opening_move_line.credit,
-        #         'balance': total_balance
-        #     })
-        
-        # Fetch all transactions (except the opening balance)
-        # transactions = self.env['account.move.line'].search([
-        #     ('account_id', '=', account_id),
-        #     ('move_id.state', '=', 'posted'), 
-        #     ('id', '!=', opening_move_line.id)
-        # ], order='date asc')
-
         for transaction in transactions:
             amount = transaction.debit - transaction.credit
             total_balance += amount
@@ -89,8 +66,6 @@ class AccountLedgerReport(models.Model):
                 'debit': transaction.debit,
                 'credit': transaction.credit,
                 'balance': total_balance,
-
-                # 'remaining_balance': total_balance
             })
 
         # Add Closing Balance Entry at the End
