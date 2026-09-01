@@ -1,5 +1,5 @@
 <odoo>
-    <report
+    <!-- <report
         id="account_ledger_report"
         string="Account Ledger Report"
         model="account.ledger.report"
@@ -7,7 +7,18 @@
         name="account_ledger_report.report_account_ledger"
         file="account_ledger_report.report_account_ledger"
         print_report_name="'Account Ledger - %s' % (object.account_id.name)"
-    />
+    /> -->
+
+    <record id="account_ledger_report" model="ir.actions.report">
+        <field name="name">Account Ledger Report</field>
+        <field name="model">account.ledger.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_ledger_report.report_account_ledger</field>
+        <field name="report_file">account_ledger_report.report_account_ledger</field>
+        <field name="print_report_name">'Account Ledger - %s' % (object.account_id.name)</field>
+        <field name="binding_model_id" ref="model_account_ledger_report"/>
+        <field name="binding_type">report</field>
+    </record>
 
     <template id="report_account_ledger">
         <!-- Ensure the report inherits the standard layout -->

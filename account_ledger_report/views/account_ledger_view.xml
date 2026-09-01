@@ -3,7 +3,7 @@
         <field name="name">account.ledger.report.tree</field>
         <field name="model">account.ledger.report</field>
         <field name="arch" type="xml">
-            <tree string="Account Ledger">
+            <list string="Account Ledger">
                 <field name="account_id"/>
                 <field name="date"/>
                 <field name="description"/>
@@ -14,7 +14,7 @@
                 <header>
                     <button name="action_export_pdf" type="object" string="Export PDF" class="oe_highlight"/>
                 </header>
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

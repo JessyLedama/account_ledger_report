@@ -2,7 +2,7 @@
     <record id="action_account_ledger_report" model="ir.actions.act_window">
         <field name="name">Account Ledger Report</field>
         <field name="res_model">account.ledger.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_sm">Generate account ledger reports.</p>
         </field>
